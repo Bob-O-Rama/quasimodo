@@ -1,0 +1,80 @@
+#
+# quasimodo.patches - a list of named MIDI patches
+#
+
+# 2 Bell Peel A2 & E3 
+2bellpeel: b2 01 30 01 b2 05 7f 01  # Setup channel 0 
+           b1 01 30 01 b1 05 7f 01  # Setup channel 1
+           92 39 7f 10              # Note On, E3, Delay ~1 second
+           91 34 7f 50              # Note On, A2, Delay ~3 seconds
+           91 34 00 10              # Note Off, A2
+           92 39 00 10              # Note Off, E3
+           91 34 00 10              # Note Off, A2
+           92 39 00 10              # Note Off, E3
+           FF 2F 00 00              # End of patch sequence
+
+# Swinging Bells
+swingbells: b0 06 3f 01
+            b0 0c 40 01
+            b0 01 30 01 
+            b0 05 7f 01 
+            90 32 7f 50 
+            90 32 00 10
+            90 32 00 10
+            FF 2F 00 00
+
+
+# Swinging Bells Probe
+swingprobe: b0 06 3f 01
+            b0 0c 40 01
+            b0 01 ?? 01
+            b0 05 7f 01
+            90 32 7f 50
+            90 32 00 10
+            90 32 00 10
+            FF 2F 00 00
+
+
+voiceprobe : b0 05 3F 01             # Set Tower Volume
+             b0 06 7F 01             # Set Tower Volume
+             b0 04 40 01             # ??
+             b0 01 ?? 01             # Set Voice to a variable
+             90 40 7f 50             # Play note, full volume, wait for a few seconds
+             90 40 00 10 90 40 00 10 # Note off
+             B0 02 ?? 01             # Disable voice
+             FF 2F 00 00             # End
+
+vp2 : 
+# f1 30 00 01 ff f2 30 00 01 ff f1 30 0a 40 ff f4 30 02 02 00 30 60 4c ff f1 30 09 4c ff
+# f7 30 02 02 08 ff f0 30 75 ff f2 30 01 00 ff f6 30 03 00 ff f6 30 0b 01 ff f6 30 0a 00 ff
+# f1 30 75 7f 7f 7f 7f ff f6 30 01 01 00 02 01 03 02 04 03 ff f2 2f 00 00 ff
+b2 05 7f 01 
+# f2 30 01 00 ff 
+b0 06 23 01
+b1 06 23 01 
+b2 06 23 01 
+b0 0c 40 01 
+b2 04 40 01 
+b1 06 3b 01 
+b2 05 7f 01
+# f0 70 00 ff f1 30 00 01 ff f2 30 00 01 ff 
+# f1 30 20 01 ff 
+b2 01 02 01 
+# f2 30 20 01 ff 92 40 28 ff
+             b1 01 ?? 01             # Set Voice to a variable
+             91 40 7f 50             # Play note, full volume, wait for a few seconds
+             91 40 00 10 91 40 00 10 # Note off
+             B1 02 ?? 01             # Disable voice
+FF 2F 00 00
+
+
+alerton:  F2 30 01 01 FF
+          B0 01 52 00    B0 05 7F 00     B0 07 01 00    B0 03 00 50
+          FF 2F 00 00
+
+alertoff: B0 07 00 00
+          F2 70 73 00 FF    F2 2F 00 00 FF    F2 3F 00 00 FF     F2 4F 00 00 FF
+          F2 30 01 01 FF
+          FF 2F 00 00
+         
+          
