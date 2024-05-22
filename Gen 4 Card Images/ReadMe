@@ -1,1 +1,9 @@
 ( non-proprietary ) AutoBel Card and Encode Backup image files.
+
+The Alma Mater... AutoBel Card contains two collections, one song each.
+
+The Lucent... Encode Backup Card contains a few cistom collections, one of which has a very pleasing intro to New Order's Elegia which works very well on bells.
+
+Between the two you have an example of both card types.  Encode Backup cards are AutoBel Cards but with a short header, otherwise the format appears to be identical.   This is reflected in quasimodo.cpp
+
+quasimodo --debug --list filename.dd will hexdump each song's data so you can inspect it.
