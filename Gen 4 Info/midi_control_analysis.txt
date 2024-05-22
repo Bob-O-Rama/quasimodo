@@ -1,0 +1,61 @@
+
+Control Change Notes
+
+None of these seem to correspond to "standard" CC messages.
+
+
+Bn 01 XX - Set Voice - Turn Voice ON
+      01 - Instantaneous Toll
+      02 - Muhlenbells Voice / KBD Voice 1 ON
+      03 - More like a muted gong
+      04 - Tubular bell / rod?  Only 3 octaves.
+      57 - Alert Tone
+
+Bn 02 XX - Set Voice - Turn Voice Off
+      XX - Send same number as Voice ON message
+      
+These appear to be enabled / disabled separately and are combined      
+          
+- - - - - - - - - - - - -
+
+Bn 03 XX - Unknown
+      00 - Used when keyboard is turned off / When sample is played          
+           
+- - - - - - - - - - - - -
+
+Bn 04 XX - Transposer
+      34 - Transpose as low as possible without losing notes
+      3A - Transposer = -6
+      40 - Used when keyboard is turned on ( Transposer = 0 )
+      46 - Transposer = +6          
+           
+- - - - - - - - - - - - -
+           
+Bn 05 XX - Set Volume ?
+      4F - Various AutoBel songs
+      7F - Instantaneous Tolling / 
+
+- - - - - - - - - - - - -
+
+Bn 06 XX - "Inside" Volume ? 
+      00 - Used when keyboard is turned off for n=0...3 and when system is powered on cold
+      23 - Used when entering "manual mode"
+      28 - Used when keyboard is turned on
+      3F - Used when keyboard is turned on
+      41 - Used when keyboard is turned on
+      -- - Various values seen when adjusting the "volume" knob on the kayboard
+
+- - - - - - - - - - - - -
+
+Bn 07 XX - Unknown
+      00 - Silence alert tone
+      01 - Play alert tone
+      
+- - - - - - - - - - - - -
+
+Bn 0C XX - Unknown
+      40 - Used when entering "manual mode" / keyboard turned off
+      
+      
+      
+            
