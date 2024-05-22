@@ -1,0 +1,19 @@
+All cards for the Gen 4 system appear to be 1MB 8-bit linear flash PCMCIA cards, this includes configuration / system restore cards as well as the music bearing AutoBel and Encode Backup Cards.
+
+These cards are NOT the ATA style storage cards commonly used.  They are essentially FLASH / EEPROM designed to map directly into the computer's address space, or in the case of a PC, exposed as a block of memory on the PCI bus.   This greatly simplifies access for embedded systems, when the card is inserted it just magically appears as RAM to the system.  For writing, the entire card ( or EEPROM block ) must be erased then then reprogrammed.
+
+An old laptop with a PCMCIA card slot is needed to read the cards.   Writing to the cards may not be possible as it requires a program voltage ( usually 12vdc ) which most laptops do not provide - as nobody was using linear flash even when it was used in embedded applications.  Writing to these cards may not be generally possible.
+
+These cards do not provide a card information block - an extra block of data that describes the card, chipset, number of chips, etc...   they generally do not work without special software or drivers on an old version of Windows.  I was able to read the cards on a circa 2005 Compaq laptop with modern copy of OpenSuSE Tumbleweed.  Any linux should work.  PCMCIA drivers are being deprecated and may no longer exist in future kernels - so if you find something that works, ensure you have the ability to rebuild it going forward.
+
+The kernel must be rebuilt to enable pcmciamtd.ko to use these cards.   I have a script to do that which I will post.
+
+Once the PCMCIA kernel modules have been rebuilt, the PCMCIA stack can be unloaded, then loaded from the newly build modules ( without permanently modifying your running kernel ) and pcmciamtd parameters can be specified to provide the default size, type and so on that makes the cards work.
+
+In the end when you insert a card, hotplug will trigger the creation of a /dev/mtdNNN device that allows you to access the contents.   Tools like pv and dd can be used to get their contents.
+
+Since the carillon's use of PCMCIA cards is really simple, it may be possible to create a Pi or Arduino based emulator that permits modified image files to be "written" to an emulator card and used by the system.   Since generally reading the data from old cards works, and writing from a PC is the issue, a means is needed to create "new" cards.   The DSP board also can use a CF card ( also linear flash ) which curently I cannot read.   Emulating the CF card may be the answer - as that can be put in a CF <--> PCMCIA adapter and used for both purposes.
+
+The carillon itself uses 5 8-bit bus latches to interface with the PCMCIA card, so this suggests that a microcontroller could easily manage the same feat.
+
+The PCMCIA card data appears to live in the carillon's control panel system.   When songs are backed up, there is no traffic on the DSP <--> Control Panel systems, which suggest they live exclusively in the control panel.   The same is true for playing existing songs, the parallel bus between the DSP and the Control Panel only shows MIDI data.  If it were reading the data from the DSP that would be seen.  Nor is there a mass upload / download at boot time.
